@@ -13,8 +13,7 @@ function JawBar(sel, options) {
     if (options) {
         this.add(options);
     }
-    document.body.appendChild(this.html.button);
-    document.body.appendChild(this.html.div);
+    document.body.appendChild(this.html.holder);
 }
 
 JawBar.prototype.init = function() {
@@ -33,7 +32,13 @@ JawBar.prototype.init = function() {
     var button = this.html.button = document.createElement('input');
     button.type = 'button';
     button.className = 'jawbar-dropdownButton';
-    button.addEventListener('click', function() {
+
+    // Holding container for the button and option container
+    var holder = this.html.holder = document.createElement('div');
+    holder.appendChild(this.html.button);
+    holder.appendChild(this.html.div);
+
+    holder.addEventListener('click', function() {
         if (that.visible) {
             that.hide();
         }
@@ -82,8 +87,8 @@ JawBar.prototype.add = function(options) {
     var subText = document.createElement('div');
     subText.className = 'jawbar-menuitem-subText';
     // Todo: change to properly-namespaced dataset properties
-    item.displayValue = options.displayValue;
-    item.searchValue = options.searchValue;
+    item.dataset.displayValue = options.displayValue;
+    item.dataset.searchValue = options.searchValue;
 
     image.src = options.icon;
     text.appendChild(document.createTextNode(options.text));
@@ -93,8 +98,7 @@ JawBar.prototype.add = function(options) {
     item.appendChild(text);
     item.appendChild(subText);
     item.addEventListener('click', function () {
-        that.parent.value = item.displayValue;
-        that.hide();
+        that.parent.value = item.dataset.displayValue;
     });
     this.html.div.appendChild(item);
     imageDiv.style.height = item.offsetHeight - 10 + 'px';
@@ -111,7 +115,7 @@ JawBar.prototype.findMatch = function (e) {
     }
     var items = this.html.div.children;
     for (var i = 0, l = items.length; i < l; i++) {
-        if (items[i].searchValue.indexOf(this.parent.value) > -1) {
+        if (items[i].dataset.searchValue.indexOf(this.parent.value) > -1) {
             items[i].classList.toggle('jawbar-menuitem-removed', false);
         }
         else {

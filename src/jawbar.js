@@ -14,14 +14,21 @@ function JawBar(sel, options) {
     div.appendChild(this.parent);
     div.appendChild(this.html.holder);
     div.addEventListener('keyup', function(e) {
-        if (e.keyCode === 27) { // Escape key
-            that.hide();
-            return;
+        switch (e.keyCode) {
+            case 27: // Escape key
+                that.hide();
+                return;
+            case 40: // Down arrow
+                
+                return;
         }
         that.findMatch(e);
     });
     document.addEventListener('click', function (e) {
-        if (e.target !== that.html.button) {
+        if (e.target === that.html.button) {
+            that.parent.select();
+        }
+        else {
             that.hide();
         }
     });

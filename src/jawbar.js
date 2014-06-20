@@ -23,7 +23,7 @@ JawBar.prototype.init = function() {
     this.parent.setAttribute('autocomplete', 'off');
     
     // Combo Div.  Container for the options
-    var divStyle = this.html.div.style;
+    var divStyle = div.style;
     divStyle.position = 'absolute';
     divStyle.visibility = 'hidden';
     divStyle.zIndex = '101';

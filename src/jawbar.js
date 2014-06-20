@@ -86,7 +86,7 @@ JawBar.prototype.add = function(options) {
     text.className = 'jawbar-menuitem-text';
     var subText = document.createElement('div');
     subText.className = 'jawbar-menuitem-subText';
-    // Todo: change to properly-namespaced dataset properties
+
     item.dataset.jawbarDisplayValue = options.displayValue;
     item.dataset.jawbarSearchValue = options.searchValue;
 

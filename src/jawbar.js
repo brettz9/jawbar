@@ -23,22 +23,11 @@ JawBar.prototype.init = function() {
     this.parent.setAttribute('autocomplete', 'off');
     
     // Combo Div.  Container for the options
-    var divStyle = div.style;
-    divStyle.position = 'absolute';
-    divStyle.visibility = 'hidden';
-    divStyle.zIndex = '101';
-    divStyle.backgroundColor = '#ffffff';
-    divStyle.border = '1px solid #000000';
-    divStyle.overflow = 'auto';
+    div.className = 'jawbar-optionContainer';
 
     // Create a button for dropdown
-    var buttonStyle = button.style;
     button.type = 'button';
-    buttonStyle.position = 'absolute';
-    buttonStyle.border = '0px';
-    buttonStyle.width = '5px';
-    buttonStyle.background = 'url(../src/images/down.png) center no-repeat';
-    buttonStyle.cursor = 'pointer';
+    button.className = 'jawbar-dropdownButton';
     button.addEventListener('click', function() {
         if (that.visible) {
             that.hide();
@@ -55,6 +44,7 @@ JawBar.prototype.init = function() {
 };
 
 JawBar.prototype.position = function() {
+    // Todo: use CSSOM to determine base style
     var divStyle = this.html.div.style;
     divStyle.height = 200 + 'px';
     divStyle.width = this.parent.offsetWidth + 'px';
@@ -74,41 +64,27 @@ JawBar.prototype.show = function() {
 JawBar.prototype.add = function(options) {
     var that = this;
     var item = document.createElement('div');
+    item.className = 'jawbar-menuitem';
     var imageDiv = document.createElement('div');
+    imageDiv.className = 'jawbar-imageContainer';
     var image = document.createElement('img');
     var text = document.createElement('div');
     var subText = document.createElement('div');
-    item.style.backgroundColor = '#ffffff';
+    subText.className = 'jawbar-subText';
+    // Todo: change to properly-namespaced dataset properties
     item.displayValue = options.displayValue;
     item.searchValue = options.searchValue;
-    item.style.cursor = 'pointer';
-    item.style.borderBottom = '1px solid #e0e0e0 ';
-    var imageDivStyle = imageDiv.style;
-    imageDivStyle.fontSize = '0px';
-    imageDivStyle.padding = '2px';
-    imageDivStyle.cssFloat = 'left';
-    imageDivStyle.styleFloat = 'left';
-    imageDivStyle.width = '16px';
+
     image.style.verticalAlign = 'top';
     image.src = options.icon;
     image.style.border = '0px';
     text.style.fontSize = '15pt';
     text.innerHTML = options.text;
-    subText.style.fontSize = '10pt';
-    subText.style.fontStyle = 'italic';
     subText.innerHTML = options.subtext;
     imageDiv.appendChild(image);
     item.appendChild(imageDiv);
     item.appendChild(text);
     item.appendChild(subText);
-    item.addEventListener('mouseover', function() {
-        item.style.backgroundColor = '#0099ff';
-        item.style.color = '#ffffff';
-    });
-    item.addEventListener('mouseout', function () {
-        item.style.backgroundColor = '#ffffff';
-        item.style.color = '#000000';
-    });
     item.addEventListener('click', function () {
         that.parent.value = item.displayValue;
         that.hide();

@@ -5,15 +5,27 @@ function JawBar(sel, options) {
     var that = this;
     this.html = {};
     this.parent = document.querySelector(sel);
-    this.parent.addEventListener('keyup', function(e){
-        that.findMatch(e);
-    });
     this.init();
     this.hide();
     if (options) {
         this.add(options);
     }
-    document.body.appendChild(this.html.holder);
+    var div = document.createElement('div');
+    div.appendChild(this.parent);
+    div.appendChild(this.html.holder);
+    div.addEventListener('keyup', function(e) {
+        if (e.keyCode === 27) { // Escape key
+            that.hide();
+            return;
+        }
+        that.findMatch(e);
+    });
+    document.addEventListener('click', function (e) {
+        if (e.target !== that.html.button) {
+            that.hide();
+        }
+    });
+    document.body.appendChild(div);
 }
 
 JawBar.prototype.init = function() {

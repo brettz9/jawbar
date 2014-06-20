@@ -17,7 +17,7 @@ out of the JavaScript), add this:
 
 # Todos
 
-1. Add support for key commands like up-down arrows and escape (or blur event) to collapse
+1. Add support for key commands like up-down arrows
 1. Change code to fully use stylesheet (querying CSSOM as necessary)
 
 # API

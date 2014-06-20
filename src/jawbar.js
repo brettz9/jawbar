@@ -87,8 +87,8 @@ JawBar.prototype.add = function(options) {
     var subText = document.createElement('div');
     subText.className = 'jawbar-menuitem-subText';
     // Todo: change to properly-namespaced dataset properties
-    item.dataset.displayValue = options.displayValue;
-    item.dataset.searchValue = options.searchValue;
+    item.dataset.jawbarDisplayValue = options.displayValue;
+    item.dataset.jawbarSearchValue = options.searchValue;
 
     image.src = options.icon;
     text.appendChild(document.createTextNode(options.text));
@@ -98,7 +98,7 @@ JawBar.prototype.add = function(options) {
     item.appendChild(text);
     item.appendChild(subText);
     item.addEventListener('click', function () {
-        that.parent.value = item.dataset.displayValue;
+        that.parent.value = item.dataset.jawbarDisplayValue;
     });
     this.html.div.appendChild(item);
     imageDiv.style.height = item.offsetHeight - 10 + 'px';
@@ -115,7 +115,7 @@ JawBar.prototype.findMatch = function (e) {
     }
     var items = this.html.div.children;
     for (var i = 0, l = items.length; i < l; i++) {
-        if (items[i].dataset.searchValue.indexOf(this.parent.value) > -1) {
+        if (items[i].dataset.jawbarSearchValue.indexOf(this.parent.value) > -1) {
             items[i].classList.toggle('jawbar-menuitem-removed', false);
         }
         else {

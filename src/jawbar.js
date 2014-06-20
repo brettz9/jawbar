@@ -78,8 +78,8 @@ JawBar.prototype.add = function(options) {
     item.searchValue = options.searchValue;
 
     image.src = options.icon;
-    text.innerHTML = options.text;
-    subText.innerHTML = options.subtext;
+    text.appendChild(document.createTextNode(options.text));
+    subText.appendChild(document.createTextNode(options.subtext));
     imageDiv.appendChild(image);
     item.appendChild(imageDiv);
     item.appendChild(text);

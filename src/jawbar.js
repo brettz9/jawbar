@@ -15,7 +15,6 @@ function JawBar(id) {
 JawBar.prototype.init = function() {
     var that = this;
     this.html.div = document.createElement('div');
-    this.html.iframe = document.createElement('iframe');
     this.html.button = document.createElement('input');
     
     // Set our styles, positioning, etc.
@@ -31,15 +30,6 @@ JawBar.prototype.init = function() {
     divStyle.backgroundColor = '#ffffff';
     divStyle.border = '1px solid #000000';
     divStyle.overflow = 'auto';
-
-    // Combo Frame.  Used to hide form elements in IE
-    var iframe = this.html.iframe;
-    var iframeStyle = iframe.style;
-    iframeStyle.position = 'absolute';
-    iframeStyle.visibility = 'hidden';
-    iframeStyle.zIndex = '100';
-    iframe.src = 'javascript:void(0)';
-    iframe.frameBorder = '0';
 
     // Create a button for dropdown
     var button = this.html.button;
@@ -59,9 +49,8 @@ JawBar.prototype.init = function() {
         }
     });
     
-    document.body.appendChild(this.html.button);
+    document.body.appendChild(button);
     document.body.appendChild(this.html.div);
-    document.body.appendChild(this.html.iframe);
     
     this.position();
 };
@@ -72,11 +61,6 @@ JawBar.prototype.position = function() {
     divStyle.width = this.parent.offsetWidth + 'px';
     divStyle.top = this.parent.offsetTop + this.parent.offsetHeight + 'px';
     divStyle.left = this.parent.offsetLeft + 'px';
-    var iframeStyle = this.html.iframe.style;
-    iframeStyle.width = this.parent.offsetWidth + 'px';
-    iframeStyle.height =  200 - 1 + 'px';
-    iframeStyle.top = this.parent.offsetTop + this.parent.offsetHeight + 'px';
-    iframeStyle.left = this.parent.offsetLeft + 'px';
     var buttonStyle = this.html.button.style;
     buttonStyle.height = this.parent.offsetHeight + 'px';
     buttonStyle.top = this.parent.offsetTop + 'px';
@@ -85,7 +69,6 @@ JawBar.prototype.position = function() {
 
 JawBar.prototype.show = function() {
     this.html.div.style.visibility = 'visible';
-    this.html.iframe.style.visibility = 'visible';
     this.visible = true;
 };
 
@@ -138,7 +121,6 @@ JawBar.prototype.add = function(options) {
 JawBar.prototype.hide = function () {
     this.visible = false;
     this.html.div.style.visibility = 'hidden';
-    this.html.iframe.style.visibility = 'hidden';
 };
 
 JawBar.prototype.findMatch = function (e) {

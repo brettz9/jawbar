@@ -60,7 +60,6 @@ JawBar.prototype.position = function() {
 
 JawBar.prototype.show = function() {
     this.html.div.classList.toggle('jawbar-hidden', false);
-    this.html.div.style.visibility = 'visible';
     this.visible = true;
 };
 
@@ -114,10 +113,10 @@ JawBar.prototype.findMatch = function (e) {
     var items = this.html.div.children;
     for (var i = 0, l = items.length; i < l; i++) {
         if (items[i].searchValue.indexOf(this.parent.value) > -1) {
-            items[i].style.display = 'block';
+            items[i].classList.toggle('jawbar-menuitem-removed', false);
         }
         else {
-            items[i].style.display = 'none';
+            items[i].classList.toggle('jawbar-menuitem-removed', true);
         }
     }
 };

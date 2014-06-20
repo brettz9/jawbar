@@ -29,12 +29,15 @@
     background-color: #ffffff;
     cursor: pointer;
     border-bottom: 1px solid #e0e0e0;
+    display: block;
 }
 .jawbar-menuitem:hover {
     color: #ffffff;
     background-color: #0099ff;
 }
-
+.jawbar-menuitem-removed {
+    display: none;
+}
 .jawbar-menuitem-icon {
     verticalAlign: top;
     border: 0px;

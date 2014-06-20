@@ -39,7 +39,7 @@
     display: none;
 }
 .jawbar-menuitem-icon {
-    verticalAlign: top;
+    vertical-align: top;
     border: 0px;
 }
 

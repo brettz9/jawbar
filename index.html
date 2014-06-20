@@ -1,28 +1,25 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" >
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<script type="text/javascript" src="jawbar.js"></script>
-	<script type="text/javascript">
-	/*<![CDATA[*/
-	window.onload = function()
-	{
-		var jbar = new jawBar('awesome');
-		jbar.add({text: 'Ubuntu', subtext: 'The best linux desktop around.', icon: 'ubuntu.png', searchValue: 'ubuntu linux os technology', displayValue: 'http://www.ubuntu.com'});
-		jbar.add({text: 'CodeProject', subtext: 'Free Source code and Programming help', icon: 'codeproject.png', searchValue: 'asp.net c# .net programming code technology', displayValue: 'http://www.codeproject.com'});
-		jbar.add({text: 'Wikipedia', subtext: 'An encyclopedia anyone can edit', icon: 'wikipedia.png', searchValue: 'wiki', displayValue: 'http://en.wikipedia.com'});
-		jbar.add({text: 'JCritters', subtext: 'MSAgent-style interactive critters', icon: 'star.png', searchValue: 'jcritter', displayValue: 'http://www.jcritters.com'});
-		jbar.add({text: 'Slashdot', subtext: 'News for nerds.', icon: 'slashdot.png', searchValue: 'slashdot code programming nerds technology', displayValue: 'http://slashdot.org'});
-		jbar.add({text: 'Dictionary.com', subtext: 'An online dictionary.', icon: 'dictionary.png', searchValue: 'dictionary', displayValue: 'http://www.dictionary.com'});
-	}
-	/*]]>*/
-	</script>
-	<style type="text/css">
-	body
-	{
-		font-size: 12pt;
-	}
-	</style>
-	<title>Test</title>
+    <meta charset="utf-8" />
+    <title>Test</title>
+    <script src="jawbar.js"></script>
+    <script>
+    window.addEventListener('DOMContentLoaded', function() {
+        var jbar = new JawBar('awesome');
+        jbar.add({text: 'Ubuntu', subtext: 'The best linux desktop around.', icon: 'ubuntu.png', searchValue: 'ubuntu linux os technology', displayValue: 'http://www.ubuntu.com'});
+        jbar.add({text: 'CodeProject', subtext: 'Free Source code and Programming help', icon: 'codeproject.png', searchValue: 'asp.net c# .net programming code technology', displayValue: 'http://www.codeproject.com'});
+        jbar.add({text: 'Wikipedia', subtext: 'An encyclopedia anyone can edit', icon: 'wikipedia.png', searchValue: 'wiki', displayValue: 'http://en.wikipedia.com'});
+        jbar.add({text: 'JCritters', subtext: 'MSAgent-style interactive critters', icon: 'star.png', searchValue: 'jcritter', displayValue: 'http://www.jcritters.com'});
+        jbar.add({text: 'Slashdot', subtext: 'News for nerds.', icon: 'slashdot.png', searchValue: 'slashdot code programming nerds technology', displayValue: 'http://slashdot.org'});
+        jbar.add({text: 'Dictionary.com', subtext: 'An online dictionary.', icon: 'dictionary.png', searchValue: 'dictionary', displayValue: 'http://www.dictionary.com'});
+    });
+    </script>
+    <style>
+    body {
+        font-size: 12pt;
+    }
+    </style>
 </head>
 <body>
 <div><input id="awesome" style="width:500px" type="text"/></div>

@@ -48,7 +48,7 @@ JawBar.prototype.init = function() {
     buttonStyle.position = 'absolute';
     buttonStyle.border = '0px';
     buttonStyle.width = '5px';
-    buttonStyle.background = 'url(down.png) center no-repeat';
+    buttonStyle.background = 'url(../src/images/down.png) center no-repeat';
     buttonStyle.cursor = 'pointer';
     button.addEventListener('click', function() {
         if (that.visible) {

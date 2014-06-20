@@ -70,6 +70,7 @@ JawBar.prototype.add = function(options) {
     var image = document.createElement('img');
     image.className = 'jawbar-menuitem-icon';
     var text = document.createElement('div');
+    text.className = 'jawbar-menuitem-text';
     var subText = document.createElement('div');
     subText.className = 'jawbar-menuitem-subText';
     // Todo: change to properly-namespaced dataset properties

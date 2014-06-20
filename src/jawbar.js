@@ -106,7 +106,6 @@ JawBar.prototype.hide = function () {
 };
 
 JawBar.prototype.findMatch = function (e) {
-    var evnt = e || window.event;
     if (!this.visible) {
         this.show();
     }

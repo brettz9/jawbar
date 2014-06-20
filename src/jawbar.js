@@ -68,17 +68,15 @@ JawBar.prototype.add = function(options) {
     var imageDiv = document.createElement('div');
     imageDiv.className = 'jawbar-imageContainer';
     var image = document.createElement('img');
+    image.className = 'jawbar-menuitem-icon';
     var text = document.createElement('div');
     var subText = document.createElement('div');
-    subText.className = 'jawbar-subText';
+    subText.className = 'jawbar-menuitem-subText';
     // Todo: change to properly-namespaced dataset properties
     item.displayValue = options.displayValue;
     item.searchValue = options.searchValue;
 
-    image.style.verticalAlign = 'top';
     image.src = options.icon;
-    image.style.border = '0px';
-    text.style.fontSize = '15pt';
     text.innerHTML = options.text;
     subText.innerHTML = options.subtext;
     imageDiv.appendChild(image);

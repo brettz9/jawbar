@@ -111,7 +111,7 @@ JawBar.prototype.findMatch = function (e) {
     if (!this.visible) {
         this.show();
     }
-    var items = this.html.div.childNodes;
+    var items = this.html.div.children;
     for (var i = 0, l = items.length; i < l; i++) {
         if (items[i].searchValue.indexOf(this.parent.value) > -1) {
             items[i].style.display = 'block';

@@ -1,11 +1,15 @@
 .jawbar-optionContainer {
     position: absolute;
-    visibility: hidden;
+    visibility: visible;
     z-index: 101;
     background-color: #ffffff;
     border: 1px solid #000000;
     overflow: auto;
 }
+.jawbar-hidden {
+    visibility: hidden;
+}
+
 .jawbar-dropdownButton {
     position: absolute;
     border: 0px;
@@ -43,4 +47,3 @@
     font-size: 10pt;
     font-style: italic;
 }
-

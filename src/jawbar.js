@@ -3,32 +3,34 @@
 
 function JawBar(sel, options) {
     var that = this;
-    this.visible = false;
     this.html = {};
     this.parent = document.querySelector(sel);
     this.parent.addEventListener('keyup', function(e){
         that.findMatch(e);
     });
     this.init();
+    this.hide();
     if (options) {
         this.add(options);
     }
+    document.body.appendChild(this.html.button);
+    document.body.appendChild(this.html.div);
 }
 
 JawBar.prototype.init = function() {
     var that = this;
+
+    // Combo Div.  Container for the options
     var div = this.html.div = document.createElement('div');
-    var button = this.html.button = document.createElement('input');
-    
+    div.className = 'jawbar-optionContainer';
+
     // Set our styles, positioning, etc.
     // The text box we are converting
     this.parent.style.position = 'relative';
     this.parent.setAttribute('autocomplete', 'off');
-    
-    // Combo Div.  Container for the options
-    div.className = 'jawbar-optionContainer';
 
     // Create a button for dropdown
+    var button = this.html.button = document.createElement('input');
     button.type = 'button';
     button.className = 'jawbar-dropdownButton';
     button.addEventListener('click', function() {
@@ -39,9 +41,6 @@ JawBar.prototype.init = function() {
             that.show();
         }
     });
-    
-    document.body.appendChild(button);
-    document.body.appendChild(div);
     
     this.position();
 };
@@ -60,6 +59,7 @@ JawBar.prototype.position = function() {
 };
 
 JawBar.prototype.show = function() {
+    this.html.div.classList.toggle('jawbar-hidden', false);
     this.html.div.style.visibility = 'visible';
     this.visible = true;
 };
@@ -103,7 +103,7 @@ JawBar.prototype.add = function(options) {
 
 JawBar.prototype.hide = function () {
     this.visible = false;
-    this.html.div.style.visibility = 'hidden';
+    this.html.div.classList.toggle('jawbar-hidden', true);
 };
 
 JawBar.prototype.findMatch = function (e) {

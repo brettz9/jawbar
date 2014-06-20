@@ -14,8 +14,8 @@ function JawBar(id) {
 
 JawBar.prototype.init = function() {
     var that = this;
-    this.html.div = document.createElement('div');
-    this.html.button = document.createElement('input');
+    var div = this.html.div = document.createElement('div');
+    var button = this.html.button = document.createElement('input');
     
     // Set our styles, positioning, etc.
     // The text box we are converting
@@ -32,7 +32,6 @@ JawBar.prototype.init = function() {
     divStyle.overflow = 'auto';
 
     // Create a button for dropdown
-    var button = this.html.button;
     var buttonStyle = button.style;
     button.type = 'button';
     buttonStyle.position = 'absolute';
@@ -50,7 +49,7 @@ JawBar.prototype.init = function() {
     });
     
     document.body.appendChild(button);
-    document.body.appendChild(this.html.div);
+    document.body.appendChild(div);
     
     this.position();
 };

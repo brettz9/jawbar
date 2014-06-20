@@ -15,11 +15,41 @@ out of the JavaScript), add this:
 1. Add this for JavaScript:
     `<script src="../src/jawbar.js"></script>`
 
-
 # Todos
 
 1. Change code to use stylesheet (and query if necessary)
 1. Add support for key commands like up-down arrows and escape (or blur event) to collapse
+
+# API
+
+## Constructor
+
+The constructor takes just one argument, the ID of the textbox you want to convert into an awesome bar.
+
+```javascript
+var bar = new JawBar('myid');
+```
+```html
+<input type="text" id="myid"/>
+```
+
+## Methods
+
+- `object.add(options)`: Adds a new item to the awesome bar. `options` is a JavaScript object containing the text you want to add, among other things.
+- `object.position()`: Attempts to position a hidden `div` for your awesome bar. You shouldn't need to call this, but if you alter your element's positions, you may have to.
+- `object.show()`: Makes the `div` visible. Effectively shows the results of the search.
+- `object.hide()`: Hides the `div`. Effectively hides your search results.
+- `object.remove(index)`: Removes the item at index `index`. If `index` is not provided, removes all items.
+
+### Add() Method
+
+The `add()` method currently supports (and requires) the following options to be passed to it:
+
+- `text`: The text that will appear in the awesome bar.
+- `subtext`: The text that will appear in smaller, italicized letters under the text.
+- `icon`: The icon to display beside the item. Should be 16x16 pixels.
+- `searchValue`: The text that is actually searched when typing in the awesome bar.
+- `displayValue`: The text that will actually appear in the awesome bar when you click an item.
 
 # Credits
 

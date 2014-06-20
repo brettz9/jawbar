@@ -1,15 +1,18 @@
 /*globals document, window*/
 (function () {'use strict';
 
-function JawBar(id) {
+function JawBar(sel, options) {
     var that = this;
     this.visible = false;
     this.html = {};
-    this.parent = document.getElementById(id);
+    this.parent = document.querySelector(sel);
     this.parent.addEventListener('keyup', function(e){
         that.findMatch(e);
     });
     this.init();
+    if (options) {
+        this.add(options);
+    }
 }
 
 JawBar.prototype.init = function() {
@@ -62,6 +65,12 @@ JawBar.prototype.show = function() {
 };
 
 JawBar.prototype.add = function(options) {
+    if (typeof options.length === 'number') {
+        options.forEach(function (option) {
+            this.add(option);
+        }, this);
+        return;
+    }
     var that = this;
     var item = document.createElement('div');
     item.className = 'jawbar-menuitem';

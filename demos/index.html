@@ -8,13 +8,14 @@
     <script src="../src/jawbar.js"></script>
     <script>
     window.addEventListener('DOMContentLoaded', function() {
-        var jbar = new JawBar('awesome');
-        jbar.add({text: 'Ubuntu', subtext: 'The best linux desktop around.', icon: 'images/ubuntu.png', searchValue: 'ubuntu linux os technology', displayValue: 'http://www.ubuntu.com'});
-        jbar.add({text: 'CodeProject', subtext: 'Free Source code and Programming help', icon: 'images/codeproject.png', searchValue: 'asp.net c# .net programming code technology', displayValue: 'http://www.codeproject.com'});
-        jbar.add({text: 'Wikipedia', subtext: 'An encyclopedia anyone can edit', icon: 'images/wikipedia.png', searchValue: 'wiki', displayValue: 'http://en.wikipedia.com'});
-        jbar.add({text: 'JCritters', subtext: 'MSAgent-style interactive critters', icon: 'images/star.png', searchValue: 'jcritter', displayValue: 'http://www.jcritters.com'});
-        jbar.add({text: 'Slashdot', subtext: 'News for nerds.', icon: 'images/slashdot.png', searchValue: 'slashdot code programming nerds technology', displayValue: 'http://slashdot.org'});
-        jbar.add({text: 'Dictionary.com', subtext: 'An online dictionary.', icon: 'images/dictionary.png', searchValue: 'dictionary', displayValue: 'http://www.dictionary.com'});
+        var jbar = new JawBar('#awesome', [
+            {text: 'Ubuntu', subtext: 'The best linux desktop around.', icon: 'images/ubuntu.png', searchValue: 'ubuntu linux os technology', displayValue: 'http://www.ubuntu.com'},
+            {text: 'CodeProject', subtext: 'Free Source code and Programming help', icon: 'images/codeproject.png', searchValue: 'asp.net c# .net programming code technology', displayValue: 'http://www.codeproject.com'},
+            {text: 'Wikipedia', subtext: 'An encyclopedia anyone can edit', icon: 'images/wikipedia.png', searchValue: 'wiki', displayValue: 'http://en.wikipedia.com'},
+            {text: 'JCritters', subtext: 'MSAgent-style interactive critters', icon: 'images/star.png', searchValue: 'jcritter', displayValue: 'http://www.jcritters.com'},
+            {text: 'Slashdot', subtext: 'News for nerds.', icon: 'images/slashdot.png', searchValue: 'slashdot code programming nerds technology', displayValue: 'http://slashdot.org'},
+            {text: 'Dictionary.com', subtext: 'An online dictionary.', icon: 'images/dictionary.png', searchValue: 'dictionary', displayValue: 'http://www.dictionary.com'}
+        ]);
     });
     </script>
 </head>

@@ -24,7 +24,8 @@ out of the JavaScript), add this:
 
 ## Constructor
 
-The constructor takes just one argument, the ID of the textbox you want to convert into an awesome bar.
+The first argument to the constructor is a CSS selector of a textbox
+you wish to convert into an awesome bar.
 
 ```javascript
 var bar = new JawBar('myid');
@@ -32,6 +33,9 @@ var bar = new JawBar('myid');
 ```html
 <input type="text" id="myid"/>
 ```
+
+An optional second argument can be provided to set the options. (See
+the `add()` method.)
 
 ## Methods
 
@@ -50,6 +54,8 @@ The `add()` method currently supports (and requires) the following options to be
 - `icon`: The icon to display beside the item. Should be 16x16 pixels.
 - `searchValue`: The text that is actually searched when typing in the awesome bar.
 - `displayValue`: The text that will actually appear in the awesome bar when you click an item.
+
+An array of such objects may also be provided for multiple simultaneous additions.
 
 # Credits
 

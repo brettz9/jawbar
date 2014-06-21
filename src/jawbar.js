@@ -1,25 +1,6 @@
 /*globals document, window*/
 (function () {'use strict';
 
-var prevHover;
-// See jawbar.css on why we can't move these to CSS
-function hoverItem () {
-    if (prevHover) {
-        prevHover.classList.toggle('jawbar-menuitem-hover', false);
-    }
-    this.classList.toggle('jawbar-menuitem-hover', true);
-    prevHover = this;
-}
-function unHoverItem () {
-    if (prevHover) {
-        prevHover.classList.toggle('jawbar-menuitem-hover', false);
-        prevHover = null;
-    }
-    else {
-        this.classList.toggle('jawbar-menuitem-hover', false);
-    }
-}
-
 // http://stackoverflow.com/a/16211222/271577
 function visible_in_container(p, e) {
     var z = p.getBoundingClientRect();
@@ -32,115 +13,18 @@ function visible_in_container(p, e) {
 }
 function JawBar(sel, options) {
     var that = this;
-    this.html = {};
     this.parent = document.querySelector(sel);
     this.init();
     this.hide();
     if (options) {
         this.add(options);
     }
-    var container = document.createElement('div');
-    var div = this.html.div;
-    container.appendChild(this.parent);
-    container.appendChild(this.html.holder);
-    container.addEventListener('keyup', function(e) {
-        switch (e.keyCode) {
-            case 27: // Escape key
-                that.hide();
-                return;
-            case 35: // End of page
-                that.show();
-                var child = div.lastElementChild;
-                child.scrollIntoView();
-                hoverItem.call(child);
-/*
-function simulateHover (elem) {
-    // None of these approaches are working to detect and/or
-    //  apply the hover rules from CSS (at least in Firefox), so
-    //  we set the styles dynamically:
-    // elem.pseudo = 'hover';
-    // alert(document.styleSheets[0].cssRules);
-    // var ev = new MouseEvent('mouseover');
-    // elem.dispatchEvent(ev);
-    // elem.style.cssText = window.getComputedStyle(elem, ':hover').cssText;
-    elem.style.color = '#ffffff';
-    elem.style.backgroundColor = '#0099ff';
-    elem.scrollIntoView();
-}
-simulateHover(div.lastElementChild);
-*/
-                return;
-            case 36: // Home
-                that.show();
-                var child = div.firstElementChild;
-                child.scrollIntoView();
-                hoverItem.call(child);
-                return;
-            case 38: // Up arrow
-                that.show();
-                var child = (prevHover && (prevHover.previousElementSibling || div.firstElementChild)) || div.firstElementChild;
-                child.scrollIntoView();
-                hoverItem.call(child);
-                return;
-            case 40: // Down arrow
-                that.show();
-                var child = (prevHover && (prevHover.nextElementSibling || div.lastElementChild)) || div.firstElementChild;
-                child.scrollIntoView();
-                hoverItem.call(child);
-                return;
-            case 33: // Page up
-                that.show();
-                var child = prevHover || div.firstElementChild;
-                while (child && visible_in_container(div, child)) { // Try to get next child out of scroll view; otherwise, all is in view
-                    child = child.previousElementSibling;
-                }
-                if (!child) {
-                    child = div.firstElementChild;
-                }
-                child.scrollIntoView();
-                hoverItem.call(child);
-                return;
-            case 34: // Page down
-                that.show();
-                var child = prevHover || div.firstElementChild;
-                while (child && visible_in_container(div, child)) { // Try to get next child out of scroll view; otherwise, all is in view
-                    child = child.nextElementSibling;
-                }
-                if (!child) {
-                    child = div.lastElementChild;
-                }
-                child.scrollIntoView();
-                hoverItem.call(child);
-                return;
-            case 13: // Enter
-                if (prevHover) {
-                    that.parent.value = prevHover.dataset.jawbarDisplayValue
-                    that.parent.select();
-                    that.hide();
-                    return;
-                }
-                break;
-            case 9: case 16: // Tab or shift-tab
-                return;
-            default:
-                // alert(e.keyCode);
-                break;
-        }
-        that.findMatch(e);
-    });
-    document.addEventListener('click', function (e) {
-        if (e.target === that.html.button) {
-            that.parent.focus();
-        }
-        else {
-            that.hide();
-        }
-    });
-    document.body.appendChild(container);
 }
 
 JawBar.prototype.init = function() {
     var that = this;
+
+    this.html = {};
 
     // Combo Div.  Container for the options
     var div = this.html.div = document.createElement('div');
@@ -171,6 +55,105 @@ JawBar.prototype.init = function() {
     });
     
     this.position();
+    
+    var container = document.createElement('div');
+    var div = this.html.div;
+    container.appendChild(this.parent);
+    container.appendChild(this.html.holder);
+    container.addEventListener('keyup', function(e) {
+        switch (e.keyCode) {
+            case 27: // Escape key
+                that.hide();
+                return;
+            case 35: // End of page
+                that.show();
+                var child = div.lastElementChild;
+                child.scrollIntoView();
+                that._hoverItem({target: child});
+/*
+function simulateHover (elem) {
+    // None of these approaches are working to detect and/or
+    //  apply the hover rules from CSS (at least in Firefox), so
+    //  we set the styles dynamically:
+    // elem.pseudo = 'hover';
+    // alert(document.styleSheets[0].cssRules);
+    // var ev = new MouseEvent('mouseover');
+    // elem.dispatchEvent(ev);
+    // elem.style.cssText = window.getComputedStyle(elem, ':hover').cssText;
+    elem.style.color = '#ffffff';
+    elem.style.backgroundColor = '#0099ff';
+    elem.scrollIntoView();
+}
+simulateHover(div.lastElementChild);
+*/
+                return;
+            case 36: // Home
+                that.show();
+                var child = div.firstElementChild;
+                child.scrollIntoView();
+                that._hoverItem({target: child});
+                return;
+            case 38: // Up arrow
+                that.show();
+                var child = (that.prevHover && (that.prevHover.previousElementSibling || div.firstElementChild)) || div.firstElementChild;
+                child.scrollIntoView();
+                that._hoverItem({target: child});
+                return;
+            case 40: // Down arrow
+                that.show();
+                var child = (that.prevHover && (that.prevHover.nextElementSibling || div.lastElementChild)) || div.firstElementChild;
+                child.scrollIntoView();
+                that._hoverItem({target: child});
+                return;
+            case 33: // Page up
+                that.show();
+                var child = that.prevHover || div.firstElementChild;
+                while (child && visible_in_container(div, child)) { // Try to get next child out of scroll view; otherwise, all is in view
+                    child = child.previousElementSibling;
+                }
+                if (!child) {
+                    child = div.firstElementChild;
+                }
+                child.scrollIntoView();
+                that._hoverItem({target: child});
+                return;
+            case 34: // Page down
+                that.show();
+                var child = that.prevHover || div.firstElementChild;
+                while (child && visible_in_container(div, child)) { // Try to get next child out of scroll view; otherwise, all is in view
+                    child = child.nextElementSibling;
+                }
+                if (!child) {
+                    child = div.lastElementChild;
+                }
+                child.scrollIntoView();
+                that._hoverItem({target: child});
+                return;
+            case 13: // Enter
+                if (that.prevHover) {
+                    that.parent.value = that.prevHover.dataset.jawbarDisplayValue
+                    that.parent.select();
+                    that.hide();
+                    return;
+                }
+                break;
+            case 9: case 16: // Tab or shift-tab
+                return;
+            default:
+                // alert(e.keyCode);
+                break;
+        }
+        that.findMatch(e);
+    });
+    document.addEventListener('click', function (e) {
+        if (e.target === that.html.button) {
+            that.parent.focus();
+        }
+        else {
+            that.hide();
+        }
+    });
+    document.body.appendChild(container);
 };
 
 JawBar.prototype.position = function() {
@@ -201,8 +184,8 @@ JawBar.prototype.add = function(options) {
     var that = this;
     var item = document.createElement('div');
     item.className = 'jawbar-menuitem';
-    item.addEventListener('mouseover', hoverItem);
-    item.addEventListener('mouseout', unHoverItem);
+    item.addEventListener('mouseover', this._hoverItem.bind(this));
+    item.addEventListener('mouseout', this._unHoverItem.bind(this));
     var imageDiv = document.createElement('div');
     imageDiv.className = 'jawbar-imageContainer';
     var image = document.createElement('img');
@@ -258,6 +241,26 @@ JawBar.prototype.remove = function(index) {
     }
     while(this.html.div.firstChild) {
         div.removeChild(div.firstChild);
+    }
+};
+
+// See jawbar.css on why we can't move these to CSS
+JawBar.prototype._hoverItem = function (e) {
+    var target = e.currentTarget || e.target;
+    if (this.prevHover) {
+        this.prevHover.classList.toggle('jawbar-menuitem-hover', false);
+    }
+    target.classList.toggle('jawbar-menuitem-hover', true);
+    this.prevHover = target;
+};
+JawBar.prototype._unHoverItem = function (e) {
+    var target = e.currentTarget || e.target;
+    if (this.prevHover) {
+        this.prevHover.classList.toggle('jawbar-menuitem-hover', false);
+        this.prevHover = null;
+    }
+    else {
+        target.classList.toggle('jawbar-menuitem-hover', false);
     }
 };
 

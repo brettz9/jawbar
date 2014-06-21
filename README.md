@@ -1,6 +1,6 @@
 # JawBar
 
-A JavaScript implementation of Firefox's "Awesome Bar".
+A Vanilla JavaScript implementation of Firefox's "Awesome Bar".
 
 HTML5's `<datalist>` element, while a step up from nothing, does not
 allow to user input to vary from what gets shown in the drop-down.

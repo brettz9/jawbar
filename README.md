@@ -28,7 +28,7 @@ The first argument to the constructor is a CSS selector of a textbox
 you wish to convert into an awesome bar.
 
 ```javascript
-var bar = new JawBar('myid');
+var bar = new JawBar('#myid');
 ```
 ```html
 <input type="text" id="myid"/>

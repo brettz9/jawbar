@@ -114,7 +114,7 @@ simulateHover(div.lastElementChild);
     });
     document.addEventListener('click', function (e) {
         if (e.target === that.html.button) {
-            that.parent.select();
+            that.parent.focus();
         }
         else {
             that.hide();
@@ -208,6 +208,7 @@ JawBar.prototype.add = function(options) {
     item.appendChild(subText);
     item.addEventListener('click', function () {
         that.parent.value = item.dataset.jawbarDisplayValue;
+		that.parent.select();
     });
     this.html.div.appendChild(item);
     imageDiv.style.height = item.offsetHeight - 10 + 'px';

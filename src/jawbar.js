@@ -75,12 +75,12 @@ simulateHover(div.lastElementChild);
                 hoverItem.call(child);
                 return;
             case 38: // Up arrow
-                var child = (prevHover && (prevHover.previousElementSibling || div.lastElementChild)) || div.lastElementChild;
+                var child = (prevHover && (prevHover.previousElementSibling || div.firstElementChild)) || div.firstElementChild;
                 child.scrollIntoView();
                 hoverItem.call(child);
                 return;
             case 40: // Down arrow
-                var child = (prevHover && (prevHover.nextElementSibling || div.firstElementChild)) || div.firstElementChild;
+                var child = (prevHover && (prevHover.nextElementSibling || div.lastElementChild)) || div.firstElementChild;
                 child.scrollIntoView();
                 hoverItem.call(child);
                 return;

@@ -120,6 +120,8 @@ simulateHover(div.lastElementChild);
                     return;
                 }
                 break;
+            case 9: case 16: // Tab or shift-tab
+                return;
             default:
                 // alert(e.keyCode);
                 break;

@@ -31,7 +31,7 @@
     border-bottom: 1px solid #e0e0e0;
     display: block;
 }
-.jawbar-menuitem:hover {
+.jawbar-menuitem-hover { /* To support keyboard-initiated hover, we need a class instead of :hover because mouseover, as it is not a trusted event, cannot be simulated to activate :hover (see http://stackoverflow.com/a/17226753 )*/
     color: #ffffff;
     background-color: #0099ff;
 }

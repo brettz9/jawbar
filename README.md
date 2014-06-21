@@ -15,10 +15,11 @@ out of the JavaScript), add this:
 1. Add this for JavaScript:
     `<script src="../src/jawbar.js"></script>`
 
+<!--
 # Todos
 
-1. Fix behavior with selecting items by enter, etc.
-
+1. 
+-->
 # API
 
 ## Constructor

@@ -113,7 +113,12 @@ simulateHover(div.lastElementChild);
                 hoverItem.call(child);
                 return;
             case 13: // Enter
-                
+                if (prevHover) {
+                    that.parent.value = prevHover.dataset.jawbarDisplayValue
+                    that.parent.select();
+                    that.hide();
+                    return;
+                }
                 break;
             default:
                 // alert(e.keyCode);
@@ -167,7 +172,7 @@ JawBar.prototype.init = function() {
 };
 
 JawBar.prototype.position = function() {
-    // Todo: use CSSOM to determine base style
+    // Querying the CSSOM for the base style only works if CSS is beneath directory!
     var divStyle = this.html.div.style;
     divStyle.height = 200 + 'px';
     divStyle.width = this.parent.offsetWidth + 'px';

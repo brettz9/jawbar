@@ -49,6 +49,7 @@ function JawBar(sel, options) {
                 that.hide();
                 return;
             case 35: // End of page
+                that.show();
                 var child = div.lastElementChild;
                 child.scrollIntoView();
                 hoverItem.call(child);
@@ -70,21 +71,25 @@ simulateHover(div.lastElementChild);
 */
                 return;
             case 36: // Home
+                that.show();
                 var child = div.firstElementChild;
                 child.scrollIntoView();
                 hoverItem.call(child);
                 return;
             case 38: // Up arrow
+                that.show();
                 var child = (prevHover && (prevHover.previousElementSibling || div.firstElementChild)) || div.firstElementChild;
                 child.scrollIntoView();
                 hoverItem.call(child);
                 return;
             case 40: // Down arrow
+                that.show();
                 var child = (prevHover && (prevHover.nextElementSibling || div.lastElementChild)) || div.firstElementChild;
                 child.scrollIntoView();
                 hoverItem.call(child);
                 return;
             case 33: // Page up
+                that.show();
                 var child = prevHover || div.firstElementChild;
                 while (child && visible_in_container(div, child)) { // Try to get next child out of scroll view; otherwise, all is in view
                     child = child.previousElementSibling;
@@ -96,6 +101,7 @@ simulateHover(div.lastElementChild);
                 hoverItem.call(child);
                 return;
             case 34: // Page down
+                that.show();
                 var child = prevHover || div.firstElementChild;
                 while (child && visible_in_container(div, child)) { // Try to get next child out of scroll view; otherwise, all is in view
                     child = child.nextElementSibling;
@@ -106,6 +112,9 @@ simulateHover(div.lastElementChild);
                 child.scrollIntoView();
                 hoverItem.call(child);
                 return;
+            case 13: // Enter
+                
+                break;
             default:
                 // alert(e.keyCode);
                 break;
@@ -208,7 +217,7 @@ JawBar.prototype.add = function(options) {
     item.appendChild(subText);
     item.addEventListener('click', function () {
         that.parent.value = item.dataset.jawbarDisplayValue;
-		that.parent.select();
+        that.parent.select();
     });
     this.html.div.appendChild(item);
     imageDiv.style.height = item.offsetHeight - 10 + 'px';

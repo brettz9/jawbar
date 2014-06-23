@@ -11,9 +11,13 @@ good start and I hope more features can be added (see below).
 
 1. For the styles (currently non-existent, but I plan to move them from
 out of the JavaScript), add this:
-    `<link href="styles/demo.css" rel="stylesheet" type="text/css" />`
+```html
+<link href="styles/demo.css" rel="stylesheet" type="text/css" />
+```
 1. Add this for JavaScript:
-    `<script src="../src/jawbar.js"></script>`
+```html
+<script src="../src/jawbar.js"></script>
+```
 
 <!--
 # Todos

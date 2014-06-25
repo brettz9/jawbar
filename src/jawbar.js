@@ -40,16 +40,12 @@ JawBar.prototype.init = function() {
     button.type = 'button';
     button.className = 'jawbar-dropdownButton';
 
-    // Holding container for the button and option container
-    var holder = this.html.holder = document.createElement('div');
-    holder.appendChild(this.html.button);
-    holder.appendChild(this.html.div);
-
-    holder.addEventListener('click', function() {
+    button.addEventListener('click', function() {
         if (that.visible) {
             that.hide();
         }
         else {
+            that.parent.focus();
             that.show();
         }
     });
@@ -142,22 +138,17 @@ simulateHover(div.lastElementChild);
         }
         that.findMatch(e);
     }
-    var container = document.createElement('div');
 
-    container.appendChild(this.parent);
-    container.appendChild(this.html.holder);
-    container.addEventListener('keyup', keyNavigation);
-    // div.addEventListener('keyup', keyNavigation);
-    // this.parent.addEventListener('keyup', keyNavigation);
-    container.addEventListener('click', function (e) {
-        if (e.target === that.html.button) {
-            that.parent.focus();
-        }
-        else {
-            that.hide();
-        }
+
+    div.addEventListener('keyup', keyNavigation);
+    this.parent.addEventListener('keyup', keyNavigation);
+
+    div.addEventListener('click', function (e) {
+        that.hide();
     });
-    document.body.appendChild(container);
+
+    document.body.appendChild(button);
+    document.body.appendChild(div);
 };
 
 JawBar.prototype.position = function() {

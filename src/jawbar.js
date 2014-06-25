@@ -13,7 +13,7 @@ function visible_in_container(p, e) {
 }
 function JawBar(sel, options) {
     var that = this;
-    this.parent = document.querySelector(sel);
+    this.parent = typeof sel === 'string' ? document.querySelector(sel) : sel;
     this.init();
     this.hide();
     if (options) {

@@ -29,7 +29,8 @@ out of the JavaScript), add this:
 ## Constructor
 
 The first argument to the constructor is a CSS selector of a textbox
-you wish to convert into an awesome bar.
+you wish to convert into an awesome bar (or the DOM element
+of the textbox).
 
 ```javascript
 var bar = new JawBar('#myid');

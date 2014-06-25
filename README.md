@@ -44,6 +44,8 @@ the `add()` method.)
 
 ## Methods
 
+The following methods all return the jawbar object so you can keep chaining methods jQuery-style.
+
 - `object.add(options)`: Adds a new item to the awesome bar. `options` is a JavaScript object containing the text you want to add, among other things.
 - `object.position()`: Attempts to position a hidden `div` for your awesome bar. You shouldn't need to call this, but if you alter your element's positions, you may have to.
 - `object.show()`: Makes the `div` visible. Effectively shows the results of the search.

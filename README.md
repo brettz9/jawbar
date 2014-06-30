@@ -27,6 +27,7 @@ If you wish to support older browsers, you will need polyfills for:
 - `Array.prototype.forEach`
 - `Element.addEventListener`
 - a proper [Array.prototype.slice](https://gist.github.com/brettz9/6093105)
+
 <!--
 # Todos
 

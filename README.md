@@ -21,12 +21,12 @@ good start and I hope more features can be added (see below).
 ```
 
 If you wish to support older browsers, you will need polyfills for:
+- A proper [Array.prototype.slice](https://gist.github.com/brettz9/6093105)
 - `Array.prototype.find`
-- `document.querySelector`
-- `Element.classList`
 - `Array.prototype.forEach`
+- `document.querySelector`
 - `Element.addEventListener`
-- a proper [Array.prototype.slice](https://gist.github.com/brettz9/6093105)
+- `Element.classList`
 
 <!--
 # Todos
